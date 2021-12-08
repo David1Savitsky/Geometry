@@ -1,7 +1,7 @@
 package com.epam.cube.logic;
 
 import com.epam.cube.entity.Cube;
-import com.epam.cube.entity.Dot;
+import com.epam.cube.entity.Point;
 import org.apache.log4j.Logger;
 
 public class CubeCreator {
@@ -18,6 +18,6 @@ public class CubeCreator {
 
         LOGGER.info("Cube created");
 
-        return new Cube(new Dot(xCoordinate, yCoordinate, zCoordinate), side);
+        return new Cube(new Point(xCoordinate, yCoordinate, zCoordinate), side);
     }
 }

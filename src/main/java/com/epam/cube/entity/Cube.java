@@ -2,21 +2,22 @@ package com.epam.cube.entity;
 
 public class Cube {
 
-    private Dot startingPoint;
+    private Point startingPoint;
     private double side;
 
     public Cube(){
-        startingPoint = new Dot();
+        startingPoint = new Point();
+        side = 0;
     }
-    public Cube(Dot startingPoint, double side){
+    public Cube(Point startingPoint, double side){
         this.startingPoint = startingPoint;
         this.side = side;
     }
 
-    public Dot getStartingPoint() {
+    public Point getStartingPoint() {
         return startingPoint;
     }
-    public void setStartingPoint(Dot startingPoint){
+    public void setStartingPoint(Point startingPoint){
         this.startingPoint = startingPoint;
     }
 

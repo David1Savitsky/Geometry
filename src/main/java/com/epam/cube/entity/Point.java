@@ -1,14 +1,15 @@
 package com.epam.cube.entity;
 
-public class Dot {
+public class Point {
 
     private double xCoordinate;
     private double yCoordinate;
     private double zCoordinate;
 
-    public Dot(){
+    public Point(){
     }
-    public Dot(double xCoordinate, double yCoordinate, double zCoordinate){
+
+    public Point(double xCoordinate, double yCoordinate, double zCoordinate){
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
         this.zCoordinate = zCoordinate;
@@ -52,7 +53,7 @@ public class Dot {
         if (obj == null || getClass() != obj.getClass()){
             return false;
         }
-        Dot point = (Dot) obj;
+        Point point = (Point) obj;
         return Double.compare(xCoordinate, point.xCoordinate) == 0
                && Double.compare(yCoordinate, point.yCoordinate) == 0
                && Double.compare(zCoordinate, point.zCoordinate) == 0;

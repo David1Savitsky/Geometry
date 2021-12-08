@@ -1,6 +1,6 @@
 package com.epam.cube.logic;
 
-import com.epam.cube.dataread.DataReader;
+import com.epam.cube.data.DataReader;
 import com.epam.cube.entity.Cube;
 import org.apache.log4j.Logger;
 
@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Director {
-    private DataReader reader;
-    private CubeValidator validator;
-    private CubeCreator creator;
+    private final DataReader reader;
+    private final CubeValidator validator;
+    private final CubeCreator creator;
 
     public static final Logger LOGGER = Logger.getLogger(Director.class);
 
@@ -19,11 +19,10 @@ public class Director {
         this.validator = validator;
         this.creator = creator;
         LOGGER.info("Class Director was initialized");
-        LOGGER.lo
     }
 
-    public List<Cube> read(String filePath) throws Exception{
-        List<Cube> cubes = new ArrayList<Cube>();
+    public List<Cube> read(String filePath) throws DataException{
+        List<Cube> cubes = new ArrayList<>();
         List<String> lines = reader.read(filePath);
 
         for (String line : lines){

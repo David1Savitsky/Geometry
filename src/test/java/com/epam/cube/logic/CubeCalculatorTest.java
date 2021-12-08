@@ -2,8 +2,7 @@ package com.epam.cube.logic;
 
 import com.epam.cube.entity.Axes;
 import com.epam.cube.entity.Cube;
-import com.epam.cube.entity.Dot;
-import com.sun.source.tree.AssertTree;
+import com.epam.cube.entity.Point;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,7 +13,7 @@ public class CubeCalculatorTest {
     @Test
     public void testCalculateVolumeShouldCalculateWhenCubeValid(){
         //given
-        Cube cube = new Cube(new Dot(0, 0, 0), 4);
+        Cube cube = new Cube(new Point(0, 0, 0), 4);
         CubeCalculator calculator = new CubeCalculator();
 
         //when
@@ -30,7 +29,7 @@ public class CubeCalculatorTest {
         CubeCalculator calculator = new CubeCalculator();
 
         //when
-        boolean isCube = calculator.isCube(new Dot(-5, 3, 0), 2);
+        boolean isCube = calculator.isCube(new Point(-5, 3, 0), 2);
 
         //then
         Assert.assertTrue(isCube);
@@ -42,20 +41,20 @@ public class CubeCalculatorTest {
         CubeCalculator calculator = new CubeCalculator();
 
         //when
-        boolean isCube = calculator.isCube(new Dot(-5, 3, 0), 0);
+        boolean isCube = calculator.isCube(new Point(-5, 3, 0), 0);
 
         //then
         Assert.assertFalse(isCube);
     }
 
     @Test
-    public void testCalculateAreaShouldCalculateWhenCubeValid(){
+    public void testCalculateSurfaceAreaShouldCalculateWhenCubeValid(){
         //given
-        Cube cube = new Cube(new Dot(-5, 4, 0), 3);
+        Cube cube = new Cube(new Point(-5, 4, 0), 3);
         CubeCalculator calculator = new CubeCalculator();
 
         //when
-        double area = calculator.calculateArea(cube);
+        double area = calculator.calculateSurfaceArea(cube);
 
         //then
         Assert.assertEquals(54, area, EPSILON);
@@ -64,7 +63,7 @@ public class CubeCalculatorTest {
     @Test
     public void testIsBaseOnCoordinatePlaneShouldReturnTrueWhenBaseOnPlane(){
         //given
-        Cube cube = new Cube(new Dot(-5, 0, 1), 3);
+        Cube cube = new Cube(new Point(-5, 0, 1), 3);
         CubeCalculator calculator = new CubeCalculator();
 
         //when
@@ -77,7 +76,7 @@ public class CubeCalculatorTest {
     @Test
     public void testIsBaseOnCoordinatePlaneShouldReturnFalseWhenBaseNotOnPlane(){
         //given
-        Cube cube = new Cube(new Dot(-5, 7, 3), 10);
+        Cube cube = new Cube(new Point(-5, 7, 3), 10);
         CubeCalculator calculator = new CubeCalculator();
 
         //when
@@ -90,7 +89,7 @@ public class CubeCalculatorTest {
     @Test
     public void testCalculateRatioVolumesShouldCalculateWhenPlaneXY(){
         //given
-        Cube cube = new Cube(new Dot(-5, 7, -4), 10);
+        Cube cube = new Cube(new Point(-5, 7, -4), 10);
         Axes axis = Axes.XY;
         CubeCalculator calculator = new CubeCalculator();
 
@@ -104,7 +103,7 @@ public class CubeCalculatorTest {
     @Test
     public void testCalculateRatioVolumesShouldCalculateWhenPlaneXZ(){
         //given
-        Cube cube = new Cube(new Dot(-5, -5, -4), 10);
+        Cube cube = new Cube(new Point(-5, -5, -4), 10);
         Axes axis = Axes.XZ;
         CubeCalculator calculator = new CubeCalculator();
 
@@ -118,7 +117,7 @@ public class CubeCalculatorTest {
     @Test
     public void testCalculateRatioVolumesShouldCalculateWhenPlaneYZ(){
         //given
-        Cube cube = new Cube(new Dot(-3, -3, -4), 12);
+        Cube cube = new Cube(new Point(-3, -3, -4), 12);
         Axes axis = Axes.YZ;
         CubeCalculator calculator = new CubeCalculator();
 

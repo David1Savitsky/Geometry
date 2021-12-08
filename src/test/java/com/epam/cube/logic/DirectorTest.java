@@ -1,8 +1,8 @@
 package com.epam.cube.logic;
 
-import com.epam.cube.dataread.DataReader;
+import com.epam.cube.data.DataReader;
 import com.epam.cube.entity.Cube;
-import com.epam.cube.entity.Dot;
+import com.epam.cube.entity.Point;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -17,13 +17,13 @@ public class DirectorTest {
     public static final String FIRST_INVALID_LINE = "2.1z 3.3 -4.8. 3.0";
     public static final String SECOND_INVALID_LINE = "2.1 3.3 -4.8. -3.0";
     public static final Cube FIRST_VALID_CUBE = new Cube(
-            new Dot(2.1, 3.3, -4.8), 3);
+            new Point(2.1, 3.3, -4.8), 3);
     public static final Cube Second_VALID_CUBE = new Cube(
-            new Dot(3.3, -1.2, -9.4), 2.2);
+            new Point(3.3, -1.2, -9.4), 2.2);
     public static final String FILE_PATH = "filePath";
 
     @Test
-    public void testReadShouldReturnListWhenDataAreValid() throws Exception{
+    public void testReadShouldReturnListWhenDataAreValid() throws DataException{
         //given
         List<String> linesRead = Arrays.asList(FIRST_VALID_LINE, SECOND_VALID_LINE);
 
@@ -46,10 +46,13 @@ public class DirectorTest {
 
         //then
         Assert.assertEquals(cubesExpected, cubesMade);
+        Assert.assertEquals(2, cubesMade.size());
+
+        Mockito.verify(reader, Mockito.times(1)).read(FILE_PATH);
     }
 
     @Test
-    public void testReadShouldNotReturnListWhenDataAreInvalid() throws Exception{
+    public void testReadShouldNotReturnListWhenDataAreInvalid() throws DataException{
         //given
         List<String> linesRead = Arrays.asList(FIRST_INVALID_LINE, SECOND_INVALID_LINE, FIRST_VALID_LINE);
 
@@ -72,6 +75,7 @@ public class DirectorTest {
 
         //then
         Assert.assertEquals(cubesExpected, cubesMade);
+        Assert.assertEquals(1, cubesMade.size());
     }
 
 }

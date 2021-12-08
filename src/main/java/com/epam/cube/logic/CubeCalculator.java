@@ -2,15 +2,15 @@ package com.epam.cube.logic;
 
 import com.epam.cube.entity.Axes;
 import com.epam.cube.entity.Cube;
-import com.epam.cube.entity.Dot;
+import com.epam.cube.entity.Point;
 
 public class CubeCalculator {
 
-    public boolean isCube(Dot startingPoint, double side){
+    public boolean isCube(Point startingPoint, double side){
         return side > 0;
     }
 
-    public double calculateArea(Cube cube){
+    public double calculateSurfaceArea(Cube cube){
         double side = cube.getSide();
         final int SIDES_NUMBER = 6;
 
@@ -24,7 +24,7 @@ public class CubeCalculator {
     }
 
     public boolean isBaseOnCoordinatePlane(Cube cube){
-        Dot startingPoint = cube.getStartingPoint();
+        Point startingPoint = cube.getStartingPoint();
         final int COORDINATE_ORIGIN = 0;
 
         return startingPoint.getXCoordinate() == COORDINATE_ORIGIN
@@ -33,7 +33,7 @@ public class CubeCalculator {
     }
 
     public double calculateRatioVolumes(Cube cube, Axes plane){
-        Dot startingPoint = cube.getStartingPoint();
+        Point startingPoint = cube.getStartingPoint();
         double startCoordinate = 1;
         double endCoordinate = 1;
         double side = cube.getSide();

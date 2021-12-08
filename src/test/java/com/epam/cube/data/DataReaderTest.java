@@ -1,5 +1,6 @@
-package com.epam.cube.dataread;
+package com.epam.cube.data;
 
+import com.epam.cube.logic.DataException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,7 +12,7 @@ public class DataReaderTest {
     private final DataReader reader = new DataReader();
 
     @Test
-    public void testReadShouldReturnArrayWhenPathValid() throws Exception{
+    public void testReadShouldReturnArrayWhenPathValid() throws DataException{
         //given
         String path = "src\\main\\resources\\Data.txt";
         List<String> expectedLines = Arrays.asList("1.0 -5.4 3.1 4.2", "2.3 -3.3 1.1 1.2", "-5.0 1.6 -3.2 4.7");
@@ -23,7 +24,7 @@ public class DataReaderTest {
         Assert.assertEquals(expectedLines, linesRead);
     }
 
-    @Test(expected = Exception.class)
+    @Test(expected = DataException.class)
     public void testReadShouldNotReadWhenPathInvalid() throws Exception {
         //given
         String path = "NotExistedPath";
