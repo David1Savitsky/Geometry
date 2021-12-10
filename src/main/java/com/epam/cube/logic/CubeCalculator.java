@@ -12,9 +12,9 @@ public class CubeCalculator {
 
     public double calculateSurfaceArea(Cube cube){
         double side = cube.getSide();
-        final int SIDES_NUMBER = 6;
+        final int sidesNumber = 6;
 
-        return SIDES_NUMBER * side * side;
+        return sidesNumber * side * side;
     }
 
     public double calculateVolume(Cube cube){
@@ -25,11 +25,11 @@ public class CubeCalculator {
 
     public boolean isBaseOnCoordinatePlane(Cube cube){
         Point startingPoint = cube.getStartingPoint();
-        final int COORDINATE_ORIGIN = 0;
+        final int coordinateOrigin = 0;
 
-        return startingPoint.getXCoordinate() == COORDINATE_ORIGIN
-               || startingPoint.getYCoordinate() == COORDINATE_ORIGIN
-               || startingPoint.getZCoordinate() == COORDINATE_ORIGIN;
+        return startingPoint.getXCoordinate() == coordinateOrigin
+               || startingPoint.getYCoordinate() == coordinateOrigin
+               || startingPoint.getZCoordinate() == coordinateOrigin;
     }
 
     public double calculateRatioVolumes(Cube cube, Axes plane){

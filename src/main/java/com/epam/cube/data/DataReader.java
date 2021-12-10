@@ -26,17 +26,14 @@ public class DataReader {
             LOGGER.info("Data from file has read");
 
         } catch (FileNotFoundException e){
-            LOGGER.warn("Caught " + e.getMessage());
             throw new DataException("Could not find the file", e);
         } catch (IOException e){
-            LOGGER.warn("Caught " + e.getMessage());
             throw new DataException("I/O Exception");
         } finally{
             if (reader != null){
                 try {
                     reader.close();
                 } catch (IOException e) {
-                     LOGGER.warn("Caught " + e.getMessage());
                      throw new DataException("I/O Exception");
                 }
             }

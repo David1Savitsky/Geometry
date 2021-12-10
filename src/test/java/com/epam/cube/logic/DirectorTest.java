@@ -71,11 +71,11 @@ public class DirectorTest {
         List<Cube> cubesExpected = Arrays.asList(FIRST_VALID_CUBE);
 
         //when
-        List<Cube> cubesMade = director.read(FILE_PATH);
+        List<Cube> cubesActual = director.read(FILE_PATH);
 
         //then
-        Assert.assertEquals(cubesExpected, cubesMade);
-        Assert.assertEquals(1, cubesMade.size());
+        Assert.assertEquals(cubesExpected, cubesActual);
+        Assert.assertEquals(1, cubesActual.size());
     }
 
 }

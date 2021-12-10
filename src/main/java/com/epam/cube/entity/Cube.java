@@ -5,10 +5,6 @@ public class Cube {
     private Point startingPoint;
     private double side;
 
-    public Cube(){
-        startingPoint = new Point();
-        side = 0;
-    }
     public Cube(Point startingPoint, double side){
         this.startingPoint = startingPoint;
         this.side = side;

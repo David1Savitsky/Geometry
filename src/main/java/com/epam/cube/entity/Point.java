@@ -6,9 +6,6 @@ public class Point {
     private double yCoordinate;
     private double zCoordinate;
 
-    public Point(){
-    }
-
     public Point(double xCoordinate, double yCoordinate, double zCoordinate){
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;

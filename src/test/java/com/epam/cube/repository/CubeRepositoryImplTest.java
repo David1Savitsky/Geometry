@@ -14,57 +14,70 @@ import java.util.List;
 
 public class CubeRepositoryImplTest{
 
-    private final CubeRepository repository = new CubeRepositoryImpl();
     private final CubeIdentifiable cubeFirst = new CubeIdentifiable(1,
             new Point(1, 2, 3), 7);
     private final CubeIdentifiable cubeSecond = new CubeIdentifiable(2,
             new Point(3, 4, 5), 6);
 
     @Test
-    public void testQueryShouldReturnCubesWhenSurfaceAreaInGivenRange(){
+    public void ITQueryShouldReturnCubesWhenSurfaceAreaInGivenRange(){
         //given
+        final CubeRepository repository = new CubeRepositoryImpl();
         repository.add(cubeFirst);
         repository.add(cubeSecond);
-        List<CubeIdentifiable> expectedQuery = Arrays.asList(cubeFirst, cubeSecond);
-
-        //when
-        List<CubeIdentifiable> actualQuery = repository.query(new SurfaceAreaRangeSpecification(95, 217));
-
-        //then
-        Assert.assertEquals(expectedQuery, actualQuery);
-    }
-
-    @Test
-    public void testQueryShouldReturnCubesWhenIdMatches(){
-        //given
-        repository.add(cubeFirst);
-        repository.add(cubeSecond);
+        CubeIdentifiable cube = Mockito.mock(CubeIdentifiable.class);
+        SurfaceAreaRangeSpecification specification = Mockito.mock(SurfaceAreaRangeSpecification.class);
+        Mockito.when(specification.specified(cubeFirst)).thenReturn(false);
+        Mockito.when(specification.specified(cubeSecond)).thenReturn(true);
         List<CubeIdentifiable> expectedQuery = Arrays.asList(cubeSecond);
 
         //when
-        List<CubeIdentifiable> actualQuery = repository.query(new IdSpecification(2));
+        List<CubeIdentifiable> actualQuery = repository.query(specification);
 
         //then
         Assert.assertEquals(expectedQuery, actualQuery);
     }
 
     @Test
-    public void testQueryShouldReturnCubesWhenInFirstQuadrant(){
+    public void ITQueryShouldReturnCubesWhenIdMatches(){
         //given
+        final CubeRepository repository = new CubeRepositoryImpl();
         repository.add(cubeFirst);
         repository.add(cubeSecond);
+        IdSpecification specification = Mockito.mock(IdSpecification.class);
+        Mockito.when(specification.specified(cubeFirst)).thenReturn(false);
+        Mockito.when(specification.specified(cubeSecond)).thenReturn(true);
+        List<CubeIdentifiable> expectedQuery = Arrays.asList(cubeSecond);
+
+        //when
+        List<CubeIdentifiable> actualQuery = repository.query(specification);
+
+        //then
+        Assert.assertEquals(expectedQuery, actualQuery);
+    }
+
+    @Test
+    public void ITQueryShouldReturnCubesWhenInFirstQuadrant(){
+        //given
+        final CubeRepository repository = new CubeRepositoryImpl();
+        repository.add(cubeFirst);
+        repository.add(cubeSecond);
+        FirstQuadrantSpecification specification = Mockito.mock(FirstQuadrantSpecification.class);
+        Mockito.when(specification.specified(cubeFirst)).thenReturn(true);
+        Mockito.when(specification.specified(cubeSecond)).thenReturn(true);
         List<CubeIdentifiable> expectedQuery = Arrays.asList(cubeFirst, cubeSecond);
 
         //when
-        List<CubeIdentifiable> actualQuery = repository.query(new FirstQuadrantSpecification());
+        List<CubeIdentifiable> actualQuery = repository.query(specification);
 
         //then
         Assert.assertEquals(expectedQuery, actualQuery);
     }
 
     @Test
-    public void testQueryShouldNotReturnCubesWhenDoesNotFitSpecification(){
+    public void ITQueryShouldNotReturnCubesWhenDoesNotFitSpecification(){
         //given
+        final CubeRepository repository = new CubeRepositoryImpl();
         repository.add(cubeFirst);
         repository.add(cubeSecond);
         Specification specification = Mockito.mock(Specification.class);
@@ -80,13 +93,14 @@ public class CubeRepositoryImplTest{
     }
 
     @Test
-    public void testSortShouldSortDataBySideWhenDataIsValid(){
+    public void ITSortShouldSortDataBySideWhenDataIsValid(){
         //given
+        final CubeRepository repository = new CubeRepositoryImpl();
         repository.add(cubeSecond);
         repository.add(cubeFirst);
-        Comparator<CubeIdentifiable> comparatorBySide = Comparator.comparing(CubeIdentifiable::getSide);
-        List<CubeIdentifiable> expectedQuery = Arrays.asList(cubeSecond, cubeFirst);
-
+        Comparator<CubeIdentifiable> comparatorBySide = Mockito.mock(Comparator.class);
+        Mockito.when(comparatorBySide.compare(cubeFirst, cubeSecond)).thenReturn(1);
+        List<CubeIdentifiable> expectedQuery = Arrays.asList(cubeFirst, cubeSecond);
 
         //when
         List<CubeIdentifiable> actualQuery = repository.sort(comparatorBySide);
@@ -96,13 +110,14 @@ public class CubeRepositoryImplTest{
     }
 
     @Test
-    public void testSortShouldSortDataByIdWhenDataIsValid(){
+    public void ITSortShouldSortDataByIdWhenDataIsValid(){
         //given
+        final CubeRepository repository = new CubeRepositoryImpl();
         repository.add(cubeSecond);
         repository.add(cubeFirst);
-        Comparator<CubeIdentifiable> comparatorById = Comparator.comparing(CubeIdentifiable::getId);
+        Comparator<CubeIdentifiable> comparatorById = Mockito.mock(Comparator.class);
+        Mockito.when(comparatorById.compare(cubeFirst, cubeSecond)).thenReturn(1);
         List<CubeIdentifiable> expectedQuery = Arrays.asList(cubeFirst, cubeSecond);
-
 
         //when
         List<CubeIdentifiable> actualQuery = repository.sort(comparatorById);
@@ -112,8 +127,9 @@ public class CubeRepositoryImplTest{
     }
 
     @Test
-    public void testSortShouldSortDataWhenDataIsValid(){
+    public void ITSortShouldSortDataWhenDataIsValid(){
         //given
+        final CubeRepository repository = new CubeRepositoryImpl();
         repository.add(cubeSecond);
         repository.add(cubeFirst);
         Comparator<CubeIdentifiable> comparator = Mockito.mock(Comparator.class);

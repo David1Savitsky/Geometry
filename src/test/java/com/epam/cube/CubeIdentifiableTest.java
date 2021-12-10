@@ -4,7 +4,11 @@ import com.epam.cube.entity.Point;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Map;
+
 public class CubeIdentifiableTest {
+
+    public static final double EPSILON = 0.00000000001;
 
     @Test
     public void testNotifyObserversShouldChangeParametersWhenDataChanged(){
@@ -17,8 +21,10 @@ public class CubeIdentifiableTest {
         cube.setSide(2);
 
         //then
-        Assert.assertEquals(8, store.getParameters().get(1).getVolume(), 0.00000000001);
-        Assert.assertEquals(24, store.getParameters().get(1).getSurfaceArea(), 0.00000000001);
+        Map<Integer, Parameters> parameters = store.getParameters();
+        Parameters firstParameter = parameters.get(1);
+        Assert.assertEquals(8, firstParameter.getVolume(), EPSILON);
+        Assert.assertEquals(24, firstParameter.getSurfaceArea(), EPSILON);
     }
 
 }

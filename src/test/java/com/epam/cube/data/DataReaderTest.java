@@ -24,6 +24,7 @@ public class DataReaderTest {
         Assert.assertEquals(expectedLines, linesRead);
     }
 
+    //then
     @Test(expected = DataException.class)
     public void testReadShouldNotReadWhenPathInvalid() throws Exception {
         //given
