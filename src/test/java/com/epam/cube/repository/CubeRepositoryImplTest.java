@@ -1,7 +1,6 @@
 package com.epam.cube.repository;
 
-import com.epam.cube.CubeIdentifiable;
-import com.epam.cube.entity.Cube;
+import com.epam.cube.CubeObservable;
 import com.epam.cube.entity.Point;
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,9 +13,9 @@ import java.util.List;
 
 public class CubeRepositoryImplTest{
 
-    private final CubeIdentifiable cubeFirst = new CubeIdentifiable(1,
+    private final CubeObservable cubeFirst = new CubeObservable(1,
             new Point(1, 2, 3), 7);
-    private final CubeIdentifiable cubeSecond = new CubeIdentifiable(2,
+    private final CubeObservable cubeSecond = new CubeObservable(2,
             new Point(3, 4, 5), 6);
 
     @Test
@@ -25,14 +24,14 @@ public class CubeRepositoryImplTest{
         final CubeRepository repository = new CubeRepositoryImpl();
         repository.add(cubeFirst);
         repository.add(cubeSecond);
-        CubeIdentifiable cube = Mockito.mock(CubeIdentifiable.class);
+        CubeObservable cube = Mockito.mock(CubeObservable.class);
         SurfaceAreaRangeSpecification specification = Mockito.mock(SurfaceAreaRangeSpecification.class);
         Mockito.when(specification.specified(cubeFirst)).thenReturn(false);
         Mockito.when(specification.specified(cubeSecond)).thenReturn(true);
-        List<CubeIdentifiable> expectedQuery = Arrays.asList(cubeSecond);
+        List<CubeObservable> expectedQuery = Arrays.asList(cubeSecond);
 
         //when
-        List<CubeIdentifiable> actualQuery = repository.query(specification);
+        List<CubeObservable> actualQuery = repository.query(specification);
 
         //then
         Assert.assertEquals(expectedQuery, actualQuery);
@@ -47,10 +46,10 @@ public class CubeRepositoryImplTest{
         IdSpecification specification = Mockito.mock(IdSpecification.class);
         Mockito.when(specification.specified(cubeFirst)).thenReturn(false);
         Mockito.when(specification.specified(cubeSecond)).thenReturn(true);
-        List<CubeIdentifiable> expectedQuery = Arrays.asList(cubeSecond);
+        List<CubeObservable> expectedQuery = Arrays.asList(cubeSecond);
 
         //when
-        List<CubeIdentifiable> actualQuery = repository.query(specification);
+        List<CubeObservable> actualQuery = repository.query(specification);
 
         //then
         Assert.assertEquals(expectedQuery, actualQuery);
@@ -65,10 +64,10 @@ public class CubeRepositoryImplTest{
         FirstQuadrantSpecification specification = Mockito.mock(FirstQuadrantSpecification.class);
         Mockito.when(specification.specified(cubeFirst)).thenReturn(true);
         Mockito.when(specification.specified(cubeSecond)).thenReturn(true);
-        List<CubeIdentifiable> expectedQuery = Arrays.asList(cubeFirst, cubeSecond);
+        List<CubeObservable> expectedQuery = Arrays.asList(cubeFirst, cubeSecond);
 
         //when
-        List<CubeIdentifiable> actualQuery = repository.query(specification);
+        List<CubeObservable> actualQuery = repository.query(specification);
 
         //then
         Assert.assertEquals(expectedQuery, actualQuery);
@@ -83,10 +82,10 @@ public class CubeRepositoryImplTest{
         Specification specification = Mockito.mock(Specification.class);
         Mockito.when(specification.specified(cubeFirst)).thenReturn(false);
         Mockito.when(specification.specified(cubeSecond)).thenReturn(false);
-        List<CubeIdentifiable> expectedQuery = new ArrayList<>();
+        List<CubeObservable> expectedQuery = new ArrayList<>();
 
         //when
-        List<CubeIdentifiable> actualQuery = repository.query(specification);
+        List<CubeObservable> actualQuery = repository.query(specification);
 
         //then
         Assert.assertEquals(expectedQuery, actualQuery);
@@ -98,12 +97,12 @@ public class CubeRepositoryImplTest{
         final CubeRepository repository = new CubeRepositoryImpl();
         repository.add(cubeSecond);
         repository.add(cubeFirst);
-        Comparator<CubeIdentifiable> comparatorBySide = Mockito.mock(Comparator.class);
+        Comparator<CubeObservable> comparatorBySide = Mockito.mock(Comparator.class);
         Mockito.when(comparatorBySide.compare(cubeFirst, cubeSecond)).thenReturn(1);
-        List<CubeIdentifiable> expectedQuery = Arrays.asList(cubeFirst, cubeSecond);
+        List<CubeObservable> expectedQuery = Arrays.asList(cubeFirst, cubeSecond);
 
         //when
-        List<CubeIdentifiable> actualQuery = repository.sort(comparatorBySide);
+        List<CubeObservable> actualQuery = repository.sort(comparatorBySide);
 
         //then
         Assert.assertEquals(expectedQuery, actualQuery);
@@ -115,12 +114,12 @@ public class CubeRepositoryImplTest{
         final CubeRepository repository = new CubeRepositoryImpl();
         repository.add(cubeSecond);
         repository.add(cubeFirst);
-        Comparator<CubeIdentifiable> comparatorById = Mockito.mock(Comparator.class);
+        Comparator<CubeObservable> comparatorById = Mockito.mock(Comparator.class);
         Mockito.when(comparatorById.compare(cubeFirst, cubeSecond)).thenReturn(1);
-        List<CubeIdentifiable> expectedQuery = Arrays.asList(cubeFirst, cubeSecond);
+        List<CubeObservable> expectedQuery = Arrays.asList(cubeFirst, cubeSecond);
 
         //when
-        List<CubeIdentifiable> actualQuery = repository.sort(comparatorById);
+        List<CubeObservable> actualQuery = repository.sort(comparatorById);
 
         //then
         Assert.assertEquals(expectedQuery, actualQuery);
@@ -132,12 +131,12 @@ public class CubeRepositoryImplTest{
         final CubeRepository repository = new CubeRepositoryImpl();
         repository.add(cubeSecond);
         repository.add(cubeFirst);
-        Comparator<CubeIdentifiable> comparator = Mockito.mock(Comparator.class);
+        Comparator<CubeObservable> comparator = Mockito.mock(Comparator.class);
         Mockito.when(comparator.compare(cubeSecond, cubeFirst)).thenReturn(1);
-        List<CubeIdentifiable> expectedQuery = Arrays.asList(cubeFirst, cubeSecond);
+        List<CubeObservable> expectedQuery = Arrays.asList(cubeFirst, cubeSecond);
 
         //when
-        List<CubeIdentifiable> actualQuery = repository.sort(comparator);
+        List<CubeObservable> actualQuery = repository.sort(comparator);
 
         //then
         Assert.assertEquals(expectedQuery, actualQuery);

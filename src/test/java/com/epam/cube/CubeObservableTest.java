@@ -6,14 +6,14 @@ import org.junit.Test;
 
 import java.util.Map;
 
-public class CubeIdentifiableTest {
+public class CubeObservableTest {
 
     public static final double EPSILON = 0.00000000001;
 
     @Test
     public void testNotifyObserversShouldChangeParametersWhenDataChanged(){
         //given
-        CubeIdentifiable cube = new CubeIdentifiable(1, new Point(1,2,3), 4);
+        CubeObservable cube = new CubeObservable(1, new Point(1,2,3), 4);
         CubeStore store = CubeStore.getInstance();
         cube.attach(store);
 

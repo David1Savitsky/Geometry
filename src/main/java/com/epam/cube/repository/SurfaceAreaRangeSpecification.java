@@ -1,6 +1,6 @@
 package com.epam.cube.repository;
 
-import com.epam.cube.CubeIdentifiable;
+import com.epam.cube.CubeObservable;
 import com.epam.cube.logic.CubeCalculator;
 
 public class SurfaceAreaRangeSpecification implements Specification{
@@ -16,7 +16,7 @@ public class SurfaceAreaRangeSpecification implements Specification{
     }
 
     @Override
-    public boolean specified(CubeIdentifiable cube) {
+    public boolean specified(CubeObservable cube) {
         //CubeCalculator calculator = new CubeCalculator();
 
         Integer surfaceArea = (int)calculator.calculateSurfaceArea(cube);

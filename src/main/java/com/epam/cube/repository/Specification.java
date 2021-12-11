@@ -1,10 +1,9 @@
 package com.epam.cube.repository;
 
-import com.epam.cube.CubeIdentifiable;
-import com.epam.cube.entity.Cube;
+import com.epam.cube.CubeObservable;
 
 public interface Specification {
 
-    boolean specified(CubeIdentifiable cube);
+    boolean specified(CubeObservable cube);
 
 }

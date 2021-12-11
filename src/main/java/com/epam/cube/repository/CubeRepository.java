@@ -1,17 +1,16 @@
 package com.epam.cube.repository;
 
-import com.epam.cube.CubeIdentifiable;
-import com.epam.cube.entity.Cube;
+import com.epam.cube.CubeObservable;
 
 import java.util.Comparator;
 import java.util.List;
 
 public interface CubeRepository {
 
-    void add(CubeIdentifiable cube);
-    void delete(CubeIdentifiable cube);
-    void update(CubeIdentifiable cube);
+    void add(CubeObservable cube);
+    void delete(CubeObservable cube);
+    void update(CubeObservable cube);
 
-    List<CubeIdentifiable> query(final Specification specification);
-    List<CubeIdentifiable> sort(Comparator<CubeIdentifiable> comparator);
+    List<CubeObservable> query(final Specification specification);
+    List<CubeObservable> sort(Comparator<CubeObservable> comparator);
 }

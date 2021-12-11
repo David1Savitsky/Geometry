@@ -1,6 +1,6 @@
 package com.epam.cube.repository;
 
-import com.epam.cube.CubeIdentifiable;
+import com.epam.cube.CubeObservable;
 
 public class IdSpecification implements Specification {
 
@@ -11,7 +11,7 @@ public class IdSpecification implements Specification {
     }
 
     @Override
-    public boolean specified(CubeIdentifiable cube) {
+    public boolean specified(CubeObservable cube) {
         return cube.getId().equals(id);
     }
 }

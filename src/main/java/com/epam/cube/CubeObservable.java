@@ -6,12 +6,12 @@ import com.epam.cube.entity.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CubeIdentifiable extends Cube implements Observable {
+public class CubeObservable extends Cube implements Observable {
 
     private final Integer id;
     private final List<Observer> observers = new ArrayList<>();
 
-    public CubeIdentifiable(Integer id, Point startingPoint, double side) {
+    public CubeObservable(Integer id, Point startingPoint, double side) {
         super(startingPoint, side);
         this.id = id;
     }

@@ -18,7 +18,7 @@ public class CubeStore implements Observer{
         return parameters;
     }
 
-    public void update(CubeIdentifiable cube){
+    public void update(CubeObservable cube){
         double volume = calculator.calculateVolume(cube);
         double surfaceArea = calculator.calculateSurfaceArea(cube);
 

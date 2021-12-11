@@ -1,36 +1,35 @@
 package com.epam.cube.repository;
 
-import com.epam.cube.CubeIdentifiable;
-import com.epam.cube.entity.Cube;
+import com.epam.cube.CubeObservable;
 
 import java.util.*;
 
 public class CubeRepositoryImpl  implements CubeRepository{
 
-    private Map<Integer, CubeIdentifiable> store = new HashMap<>();
+    private Map<Integer, CubeObservable> store = new HashMap<>();
 
     @Override
-    public void add(CubeIdentifiable cube) {
+    public void add(CubeObservable cube) {
         Integer cubeId = cube.getId();
         store.put(cubeId, cube);
     }
 
     @Override
-    public void delete(CubeIdentifiable cube) {
+    public void delete(CubeObservable cube) {
         Integer cubeId = cube.getId();
         store.remove(cubeId, cube);
     }
 
     @Override
-    public void update(CubeIdentifiable cube) {
+    public void update(CubeObservable cube) {
         Integer cubeId = cube.getId();
         store.put(cubeId, cube);
     }
 
     @Override
-    public List<CubeIdentifiable> query(final Specification specification) {
-        List<CubeIdentifiable> cubes = new ArrayList<>();
-        for(CubeIdentifiable cube : store.values()){
+    public List<CubeObservable> query(final Specification specification) {
+        List<CubeObservable> cubes = new ArrayList<>();
+        for(CubeObservable cube : store.values()){
             if (specification.specified(cube)){
                 cubes.add(cube);
             }
@@ -39,8 +38,8 @@ public class CubeRepositoryImpl  implements CubeRepository{
     }
 
     @Override
-    public List<CubeIdentifiable> sort(final Comparator<CubeIdentifiable> comparator) {
-        List<CubeIdentifiable> result = new ArrayList<>(store.values());
+    public List<CubeObservable> sort(final Comparator<CubeObservable> comparator) {
+        List<CubeObservable> result = new ArrayList<>(store.values());
         result.sort(comparator);
         return result;
     }
